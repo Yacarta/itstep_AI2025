@@ -71,11 +71,9 @@ prompt_plan = PromptTemplate.from_template(
 
 plan_chain = prompt_plan | llm
 
-# 8. Отримання параметрів користувача
 level = input("\nВаш рівень підготовки (низький, середній, професіонал): ")
 time = input("Скільки годин на тиждень ви готові тренуватись?: ")
 
-# 9. Генерація плану
 training_plan = plan_chain.invoke({
     "exercises": exercise_list,
     "level": level,
