@@ -7,20 +7,20 @@ import dotenv
 import os
 from uuid import uuid4
 
-# Load environment variables
+
 dotenv.load_dotenv()
 
-# Get API keys
+
 api_key = os.getenv('GEMINI_API_KEY')
 pinecone_api_key = os.getenv('PINECONE_API_KEY')
 
-# Initialize embeddings model
+
 embeddings = GoogleGenerativeAIEmbeddings(
     model="models/text-embedding-004",
     google_api_key=api_key
 )
 
-# Initialize Pinecone
+
 pc = Pinecone(api_key=pinecone_api_key)
 index_name = "itstep"
 
@@ -41,10 +41,9 @@ vector_store = PineconeVectorStore(
     embedding=embeddings
 )
 
-# Streamlit app
 st.title("Завантаження документів")
 
-# Document upload section
+
 st.header("Система для завантаження")
 uploaded_files = st.file_uploader(
     "Оберіть файли для завантаження",
@@ -73,7 +72,7 @@ if uploaded_files:
             vector_store.add_documents(documents, ids=ids)
             st.success(f"Завантажено {len(documents)} документів!")
 
-# Search section
+
 st.header("Пошук документів")
 user_query = st.text_input("Введіть запит:")
 
