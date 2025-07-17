@@ -2,7 +2,8 @@ import os
 import dotenv
 import requests
 import json
-
+from langchain_google_genai import GoogleGenerativeAI
+from langchain.prompts import PromptTemplate
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -10,14 +11,21 @@ from langchain_core.messages import SystemMessage, HumanMessage
 dotenv.load_dotenv()
 
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-WIX_API_KEY = os.getenv("WIX_API_KEY")
+
+import dotenv
+
+dotenv.load_dotenv()
+WIX_API_KEY = os.getenv("WIX_API_KEY2")
 SITE_ID = os.getenv("SITE_ID")
+print("WIX_API_KEY:", WIX_API_KEY)
+print("SITE_ID:", SITE_ID)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+api_key = os.getenv('GEMINI_API_KEY')
 
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",
-    google_api_key=GEMINI_API_KEY
+llm = GoogleGenerativeAI(
+    model='gemini-2.0-flash',  # назва моделі
+    google_api_key=api_key,  # ваша API
 )
 
 
