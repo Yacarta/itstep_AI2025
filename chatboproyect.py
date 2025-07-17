@@ -9,16 +9,13 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
 
 dotenv.load_dotenv()
-
-
-
 import dotenv
 
 dotenv.load_dotenv()
 WIX_API_KEY = os.getenv("WIX_API_KEY2")
 SITE_ID = os.getenv("SITE_ID")
-print("WIX_API_KEY:", WIX_API_KEY)
-print("SITE_ID:", SITE_ID)
+# print("WIX_API_KEY:", WIX_API_KEY)
+# print("SITE_ID:", SITE_ID)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 api_key = os.getenv('GEMINI_API_KEY')
 
@@ -54,14 +51,17 @@ def search_product(search: str):
     }
 
     payload = {
-      "query": {
-        "filter": "{\"paymentStatus\":\"PAID\"}",
-        "sort": "{\"number\": \"desc\"}",
-        "paging": {
-          "limit": "50"
-        }
+  "query": {
+    "filter": {
+      "name": {
+        "$contains": "lavanda"
       }
+    },
+    "paging": {
+      "limit": 10
     }
+  }
+}
 
     try:
         response = requests.post(url, headers=headers, json=payload)
