@@ -1,10 +1,10 @@
-import os
-import requests
-import json
-from langdetect import detect
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessage, HumanMessage
-from dotenv import load_dotenv
+# import os
+# import requests
+# import json
+# from langdetect import detect
+# from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_core.messages import SystemMessage, HumanMessage
+# from dotenv import load_dotenv
 
 # Load environment variables
 import streamlit as st
